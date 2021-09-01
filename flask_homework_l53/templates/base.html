@@ -9,7 +9,31 @@
 </head>
 <body>
 
+    <header class="header">
+
+            <nav class="uk-navbar-container uk-margin" uk-navbar>
+                <div class="uk-navbar-left">
+                    <a class="uk-navbar-item uk-logo" href="/">Список задач</a>
+                </div>
+                <div class="uk-navbar-right">
+                    <ul class="uk-navbar-nav">
+                        <li>
+                            <a href="#">
+                                <span class="uk-icon uk-margin-small-right" uk-icon="icon: pencil"></span>
+                                Создать задачу
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+
+    </header>
+
+    <div class="uk-container uk-container-large">
     {% block main %}{% endblock main %}
+    </div>
+
 
     <script src="{{ url_for("static", filename="js/uikit.js") }}"></script>
     <script src="{{ url_for("static", filename="js/uikit-icons.js") }}"></script>
