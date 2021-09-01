@@ -5,6 +5,19 @@
 {% endblock title %}
 
 {% block main %}
-    <h2>It`s work!</h2>
-{% endblock  %}
+    <div class="uk-child-width-1-2@s uk-grid-match" uk-grid>
+
+        {% for task in data %}
+
+            <div class="uk-card uk-card-default uk-card-hover uk-card-body">
+                <h3 class="uk-card-title">{{ task.title }}</h3>
+                <p>{{ task.description }}</p>
+            </div>
+
+        {% endfor %}
+
+
+    </div>
+
+{% endblock %}
 

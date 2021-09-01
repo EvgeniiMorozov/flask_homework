@@ -6,38 +6,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% block title %}{% endblock title %}
     <link rel="stylesheet" href="{{ url_for("static", filename="css/uikit.css") }}">
+
+    <style>
+        .bg_color {
+            background: bisque;
+        }
+    </style>
+
 </head>
-<body>
+<body class="bg_color">
 
-    <header class="header">
+<header class="header">
 
-            <nav class="uk-navbar-container uk-margin" uk-navbar>
-                <div class="uk-navbar-left">
-                    <a class="uk-navbar-item uk-logo" href="/">Список задач</a>
-                </div>
-                <div class="uk-navbar-right">
-                    <ul class="uk-navbar-nav">
-                        <li>
-                            <a href="/add">
-                                <span class="uk-icon uk-margin-small-right" uk-icon="icon: pencil"></span>
-                                Создать задачу
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
+    <nav class="uk-navbar-container uk-margin" uk-navbar>
+        <div class="uk-navbar-left">
+            <a class="uk-navbar-item uk-logo" href="/">Список задач</a>
+        </div>
+        <div class="uk-navbar-right">
+            <ul class="uk-navbar-nav">
+                <li>
+                    <a href="/add">
+                        <span class="uk-icon uk-margin-small-right" uk-icon="icon: pencil"></span>
+                        Создать задачу
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
 
-    </header>
+</header>
 
-    <div class="uk-container uk-container-small">
+<div class="uk-container uk-container-small">
 
     {% block main %}{% endblock main %}
 
-    </div>
+</div>
 
 
-    <script src="{{ url_for("static", filename="js/uikit.js") }}"></script>
-    <script src="{{ url_for("static", filename="js/uikit-icons.js") }}"></script>
+<script src="{{ url_for("static", filename="js/uikit.js") }}"></script>
+<script src="{{ url_for("static", filename="js/uikit-icons.js") }}"></script>
 </body>
 </html>
