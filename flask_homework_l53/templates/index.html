@@ -1,23 +1,36 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 
 {% block title %}
     <title>Список задач</title>
-{% endblock title %}
+{% endblock %}
 
 {% block main %}
-    <div class="uk-child-width-1-2@s uk-grid-match" uk-grid>
 
-        {% for task in data %}
+    <div class="container">
+        <div class="row">
+            {% if not data %}
 
-            <div class="uk-card uk-card-default uk-card-hover uk-card-body">
-                <h3 class="uk-card-title">{{ task.title }}</h3>
-                <p>{{ task.description }}</p>
-            </div>
+                <h2>Задач нет!</h2>
 
-        {% endfor %}
+            {% else %}
 
+                {% for task in data %}
 
+                    <div class="col-4 mb-lg-2">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ task.title }}</h5>
+                                <p class="card-text">{{ task.description }}</p>
+                                <a href="/del/{{ task.id }}" class="btn btn-primary">Выполнено</a>
+                            </div>
+                        </div>
+                    </div>
+
+                {% endfor %}
+
+            {% endif %}
+
+        </div>
     </div>
 
 {% endblock %}
-

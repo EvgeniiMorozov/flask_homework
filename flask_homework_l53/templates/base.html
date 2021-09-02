@@ -1,50 +1,37 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {% block title %}{% endblock title %}
-    <link rel="stylesheet" href="{{ url_for("static", filename="css/uikit.css") }}">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <style>
-        .bg_color {
-            background: bisque;
-        }
-    </style>
+    {% block title %}{% endblock %}
 
+    <link rel="stylesheet" href="{{ url_for("static", filename="css/bootstrap.min.css") }}">
+    <script src="{{ url_for("static", filename="js/bootstrap.bundle.min.js") }}"></script>
 </head>
-<body class="bg_color">
+<body>
 
-<header class="header">
+    <div class="container bg-primary bg-gradient bg-opacity-25">
+        <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+                <img src="{{ url_for("static", filename="img/tasks.png") }}" alt="" width="40" height="32">
+                <span class="fs-4">Список задач</span>
+            </a>
 
-    <nav class="uk-navbar-container uk-margin" uk-navbar>
-        <div class="uk-navbar-left">
-            <a class="uk-navbar-item uk-logo" href="/">Список задач</a>
-        </div>
-        <div class="uk-navbar-right">
-            <ul class="uk-navbar-nav">
-                <li>
-                    <a href="/add">
-                        <span class="uk-icon uk-margin-small-right" uk-icon="icon: pencil"></span>
-                        Создать задачу
-                    </a>
-                </li>
+            <ul class="nav nav-pills">
+{#                <li class="nav-item"><a href="/" class="nav-link">Список задач</a></li>#}
+                <li class="nav-item"><a href="/add" class="nav-link">Добавить задачу</a></li>
             </ul>
-        </div>
-    </nav>
+    </header>
+    </div>
 
+    {% block main %}
 
-</header>
+    {% endblock %}
 
-<div class="uk-container uk-container-small">
+    <script src="{{ url_for("static", filename="js/bootstrap.min.js") }}"></script>
 
-    {% block main %}{% endblock main %}
-
-</div>
-
-
-<script src="{{ url_for("static", filename="js/uikit.js") }}"></script>
-<script src="{{ url_for("static", filename="js/uikit-icons.js") }}"></script>
 </body>
 </html>
