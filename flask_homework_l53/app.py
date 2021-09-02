@@ -47,6 +47,10 @@ def add_task():
 
 @app.route("/del/<int:task_id>")
 def mark_task_as_completed(task_id):
+    task = Tasks.query.get(task_id)
+    task.is_completed = True
+    db.session.add(task)
+    db.session.commit()
     return redirect("/")
 
 
