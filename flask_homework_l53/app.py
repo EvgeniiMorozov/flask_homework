@@ -13,6 +13,7 @@ class Tasks(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(45), nullable=False)
     description = db.Column(db.Text)
+    is_completed = db.Column(db.Boolean, default=False)
 
     def __repr__(self):
         return self.title
@@ -21,6 +22,9 @@ class Tasks(db.Model):
 @app.route("/")
 def index():
     tasks = Tasks.query.all()
+    completed_tasks = Tasks.query.filter(
+        Tasks.is_completed == 1
+    ).all()
     return render_template("index.html", data=tasks)
 
 
@@ -39,6 +43,11 @@ def add_task():
         return redirect("/add")
     except:
         return "Что-то пошло не так!"
+
+
+@app.route("/del/<int:task_id>")
+def mark_task_as_completed(task_id):
+    return redirect("/")
 
 
 if __name__ == "__main__":
