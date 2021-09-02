@@ -21,22 +21,26 @@ class Tasks(db.Model):
 
 @app.route("/")
 def index():
-    tasks = Tasks.query.all()
-    completed_tasks = Tasks.query.filter(
-        Tasks.is_completed == 1
-    ).all()
-    return render_template("index.html", data=tasks)
+    all_tasks = {
+        "current_tasks": Tasks.query.filter(Tasks.is_completed == 0).all(),
+        "completed_tasks": Tasks.query.filter(Tasks.is_completed == 1).all(),
+    }
+    return render_template("index.html", **all_tasks)
 
 
 @app.route("/add", methods=["GET", "POST"])
 def add_task():
     if request.method != "POST":
         return render_template("add_task.html")
+
     title = request.form["task_title"]
     description = request.form["task_description"]
+
     if not title or not description:
         return render_template("add_task.html", error="Ввведите данные правильно!")
+
     task = Tasks(title=title, description=description)
+
     try:
         db.session.add(task)
         db.session.commit()
@@ -45,11 +49,28 @@ def add_task():
         return "Что-то пошло не так!"
 
 
-@app.route("/del/<int:task_id>")
+@app.route("/task_complete/<int:task_id>")
 def mark_task_as_completed(task_id):
     task = Tasks.query.get(task_id)
     task.is_completed = True
     db.session.add(task)
+    db.session.commit()
+    return redirect("/")
+
+
+@app.route("/rework/<int:task_id>")
+def mark_task_as_not_completed(task_id):
+    task = Tasks.query.get(task_id)
+    task.is_completed = False
+    db.session.add(task)
+    db.session.commit()
+    return redirect("/")
+
+
+@app.route("/del/<int:task_id>")
+def del_task(task_id):
+    task = Tasks.query.get(task_id)
+    db.session.delete(task)
     db.session.commit()
     return redirect("/")
 
