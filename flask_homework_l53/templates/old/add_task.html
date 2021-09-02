@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>Добавить задачу</title>
+{% endblock %}
+
+{% block main %}
+
+    <form method="post">
+        <fieldset class="uk-fieldset">
+
+            <legend class="uk-legend">Добавить задачу</legend>
+
+            <div class="uk-margin">
+                <input class="uk-input uk-form-width-large" type="text" name="task_title" placeholder="Новая задача">
+            </div>
+
+            <div class="uk-margin">
+                <input class="uk-input uk-form-width-large" type="text" name="task_description" placeholder="Описание задачи">
+            </div>
+
+            <div class="uk-margin">
+                <button class="uk-button uk-button-primary" type="submit">Подтвердить</button>
+            </div>
+
+        </fieldset>
+    </form>
+
+    {% if error %}
+    <h3>{{ error }}</h3>
+    {% endif %}
+
+
+
+{% endblock %}

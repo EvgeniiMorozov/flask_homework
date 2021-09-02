@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>Список задач</title>
+{% endblock title %}
+
+{% block main %}
+    <div class="uk-child-width-1-2@s uk-grid-match" uk-grid>
+
+        {% for task in data %}
+
+            <div class="uk-card uk-card-default uk-card-hover uk-card-body">
+                <h3 class="uk-card-title">{{ task.title }}</h3>
+                <p>{{ task.description }}</p>
+            </div>
+
+        {% endfor %}
+
+
+    </div>
+
+{% endblock %}
+
