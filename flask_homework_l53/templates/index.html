@@ -8,20 +8,45 @@
 
     <div class="container">
         <div class="row">
-            {% if not data %}
+            {% if not current_tasks %}
 
                 <h2>Задач нет!</h2>
 
             {% else %}
 
-                {% for task in data %}
+                <h2>Текущие задачи</h2>
+                {% for task in current_tasks %}
 
                     <div class="col-4 mb-lg-2">
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title">{{ task.title }}</h5>
                                 <p class="card-text">{{ task.description }}</p>
-                                <a href="/del/{{ task.id }}" class="btn btn-primary">Выполнено</a>
+                                <a href="/task_complete/{{ task.id }}" class="btn btn-success">Выполнено</a>
+                            </div>
+                        </div>
+                    </div>
+
+                {% endfor %}
+
+            {% endif %}
+
+            {% if not completed_tasks %}
+
+                <h2>Выполненных задач нет!</h2>
+
+            {% else %}
+
+                <h2>Выполненные задачи</h2>
+                {% for task in completed_tasks %}
+
+                    <div class="col-4 mb-lg-2">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ task.title }}</h5>
+                                <p class="card-text">{{ task.description }}</p>
+                                <a href="/rework/{{ task.id }}" class="btn btn-primary">Переделать</a>
+                                <a href="/del/{{ task.id }}" class="btn btn-danger">Удалить</a>
                             </div>
                         </div>
                     </div>
